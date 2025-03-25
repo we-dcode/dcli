@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+VERSION="${1:-v0.1.0}"
+OS="$(uname | tr '[:upper:]' '[:lower:]')"
+ARCH="$(uname -m)"
+
+# Translate arch names
+if [[ "$ARCH" == "x86_64" ]]; then ARCH="amd64"; fi
+if [[ "$ARCH" == "arm64" || "$ARCH" == "aarch64" ]]; then ARCH="arm64"; fi
+
+URL="https://github.com/dcode-tech/dcli/releases/download/$VERSION/dcli_${VERSION}_${OS}_${ARCH}.tar.gz"
+
+echo "📦 Downloading dcli $VERSION for $OS/$ARCH..."
+mkdir -p ~/.dcode
+curl -sL "$URL" | tar -xz -C ~/.dcode
+
+chmod +x ~/.dcode/dcli
+
+echo "✅ Installed to ~/.dcode/dcli"
+echo "👉 Add to PATH: export PATH=\"\$HOME/.dcode:\$PATH\""

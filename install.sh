@@ -1,7 +1,12 @@
 #!/bin/bash
 set -e
 
-VERSION="${1:-v0.1.0}"
+VERSION="${1}"
+
+if [ -z "$VERSION" ]; then
+  VERSION=$(curl -s https://api.github.com/repos/dcode-tech/dcli/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+fi
+
 OS="$(uname | tr '[:upper:]' '[:lower:]')"
 ARCH="$(uname -m)"
 

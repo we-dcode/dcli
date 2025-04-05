@@ -5,7 +5,7 @@ param (
 # Function to get the installed dcli version
 function Get-InstalledDcliVersion {
     try {
-        $output = & dcli -v 2>$null
+        $output = & "C:\Program Files\Dcode\dcli.exe" -v 2>$null
         if ($output -match 'dcli version (\d+\.\d+\.\d+)') {
             return $matches[1]
         }

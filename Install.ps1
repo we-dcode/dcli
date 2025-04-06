@@ -1,5 +1,5 @@
 param (
-    [string]$Version
+    [string]$Version = $env:DCLI_VERSION
 )
 
 # Function to get the installed dcli version

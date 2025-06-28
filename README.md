@@ -1,1 +1,1 @@
-Dcode cli installer
+Dcode cli installer project.
